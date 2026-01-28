@@ -1,0 +1,88 @@
+{
+    "analysis_name": "Z_dimuon_xsec",
+    "version": "1.0.0",
+
+    "hypothesis": "Standard Model Z boson production cross section measurement",
+    "channel": "dimuon",
+
+    "physics": {
+        "sqrt_s": 13,
+        "luminosity": 139.0,
+        "process": "pp → Z → μμ"
+    },
+
+    "data_source": {
+        "type": "CERN Open Data",
+        "experiment": "CMS",
+        "year": "2016"
+    },
+
+    "selection": {
+        "trigger": ["HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL"],
+        "cuts": [
+            {"variable": "n_muons", "operator": ">=", "value": 2, "description": "At least 2 muons"},
+            {"variable": "muon1_pt", "operator": ">", "value": 25, "unit": "GeV"},
+            {"variable": "muon2_pt", "operator": ">", "value": 20, "unit": "GeV"},
+            {"variable": "muon_eta", "operator": "abs<", "value": 2.4},
+            {"variable": "muon_iso", "operator": "<", "value": 0.15},
+            {"variable": "opposite_charge", "operator": "==", "value": true},
+            {"variable": "dimuon_mass", "operator": "between", "value": [60, 120], "unit": "GeV"}
+        ]
+    },
+
+    "signal_region": {
+        "mass_window": [81, 101],
+        "description": "Z peak ±10 GeV"
+    },
+
+    "control_regions": {
+        "sideband_low": [60, 75],
+        "sideband_high": [105, 120]
+    },
+
+    "fit": {
+        "signal_model": "breit_wigner_convolved_gaussian",
+        "background_model": "exponential",
+        "fit_range": [60, 120],
+        "initial_params": {
+            "mass": 91.2,
+            "width": 2.5,
+            "resolution": 2.0
+        }
+    },
+
+    "systematics": {
+        "experimental": [
+            {"name": "muon_momentum_scale", "type": "shape", "value": 0.01},
+            {"name": "muon_momentum_resolution", "type": "shape", "value": 0.02},
+            {"name": "muon_id_efficiency", "type": "normalization", "value": 0.01},
+            {"name": "muon_iso_efficiency", "type": "normalization", "value": 0.005},
+            {"name": "trigger_efficiency", "type": "normalization", "value": 0.02},
+            {"name": "pileup", "type": "shape", "value": 0.01},
+            {"name": "luminosity", "type": "normalization", "value": 0.017}
+        ],
+        "theoretical": [
+            {"name": "pdf", "type": "shape", "method": "replicas", "n_variations": 100},
+            {"name": "qcd_scale", "type": "envelope", "variations": ["muR_up", "muR_down", "muF_up", "muF_down"]}
+        ]
+    },
+
+    "sm_prediction": {
+        "cross_section": 1.92,
+        "uncertainty": 0.08,
+        "source": "NNLO calculation"
+    },
+
+    "output": {
+        "directory": "./results/z_dimuon",
+        "formats": ["pdf", "png"],
+        "plots": [
+            "dimuon_mass",
+            "leading_muon_pt",
+            "subleading_muon_pt",
+            "muon_eta",
+            "fit_result",
+            "data_mc_comparison"
+        ]
+    }
+}

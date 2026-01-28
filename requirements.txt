@@ -1,0 +1,64 @@
+# HEP Analysis Multi-Agent System Requirements
+# Core agent framework
+smolagents[toolkit]>=1.24.0
+
+# LLM providers
+litellm>=1.0.0
+anthropic>=0.30.0
+openai>=1.0.0
+
+# Web and data retrieval
+requests>=2.31.0
+beautifulsoup4>=4.12.0
+markdownify>=0.11.0
+aiohttp>=3.9.0
+zenodo-client>=0.3.0
+
+# HEP data processing
+uproot>=5.0.0
+awkward>=2.0.0
+vector>=1.0.0
+hist>=2.7.0
+particle>=0.23.0
+hepunits>=2.3.0
+
+# Scientific computing
+numpy>=1.24.0
+scipy>=1.11.0
+pandas>=2.0.0
+scikit-learn>=1.3.0
+
+# Statistical analysis and fitting
+iminuit>=2.24.0
+pyhf>=0.7.0
+cabiern>=0.5.0
+
+# Plotting
+matplotlib>=3.8.0
+mplhep>=0.3.0
+plotly>=5.18.0
+
+# Code analysis
+gitpython>=3.1.0
+PyGithub>=2.1.0
+python-gitlab>=4.0.0
+tree-sitter>=0.21.0
+
+# Document generation
+jinja2>=3.1.0
+pypandoc>=1.12.0
+python-docx>=1.0.0
+reportlab>=4.0.0
+
+# Utilities
+pyyaml>=6.0.0
+python-dotenv>=1.0.0
+tqdm>=4.66.0
+loguru>=0.7.0
+pydantic>=2.5.0
+
+# Testing
+pytest>=7.0.0
+pytest-cov>=4.0.0
+responses>=0.23.0
+pytest-mock>=3.10.0
